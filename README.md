@@ -1,19 +1,11 @@
 # dsh-web-keepalive
 
+**English** | [中文](README.zh.md)
+
 Stops the [dsh](https://github.com/deepseek-ai) Web GUI from dropping its live connection.
 
 A small, dependency-free dsh plugin: one host-side no-op row plus one browser bundle that holds a
 warm WebSocket on the gateway endpoint, so the Host heartbeat cannot conclude the page is gone.
-
-## 简介
-
-dsh 网页端用一段时间后连接断开，根因是宿主对实时通道 `/api/remote.mux` 的存活检查过窄：每 2 秒发一个
-WebSocket Ping，只容忍 2 次丢包，约 **6 秒**收不到 pong 就直接 `terminate()` 连接。而 pong 完全依赖浏览器
-自动回复控制帧——标签页后台节流、主线程卡顿、休眠唤醒、代理不转发控制帧，都会让它失守，于是服务端不断掐断
-用户其实还在的连接，页面只能反复退避重连。
-
-本插件在浏览器端每 **1 秒**发送一个协议合法的轻量帧复位心跳计数，掐断窗口就不会打开。它开的是自己的一条
-连接，不碰产品原有的 socket，也不调用任何内部接口。装完重启 dsh 永久生效，无运行时依赖。
 
 ---
 
