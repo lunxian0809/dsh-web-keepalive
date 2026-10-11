@@ -1,0 +1,39 @@
+{
+  "name": "dsh-web-keepalive",
+  "version": "1.0.0",
+  "description": "Stop the dsh Web GUI from dropping its live connection: keeps the /api/remote.mux WebSocket warm so the Host heartbeat cannot terminate it.",
+  "type": "module",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js"
+  },
+  "files": [
+    "lib",
+    "install.mjs",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "cordis",
+    "plugin",
+    "websocket",
+    "keepalive"
+  ],
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "inject": []
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "install:profile": "node install.mjs",
+    "test": "node test/install.test.mjs"
+  }
+}

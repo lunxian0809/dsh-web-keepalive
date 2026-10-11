@@ -1,0 +1,9 @@
+# Normalize line endings in the repository; check out native per platform.
+* text=auto eol=lf
+
+# Keep these byte-exact.
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff binary
+*.woff2 binary
